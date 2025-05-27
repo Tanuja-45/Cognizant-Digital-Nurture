@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local Community Event Portal</title>
+  <style>
+    body {
+      background: #f4f4f4 url('images/bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    #mainHeader {
+      background: linear-gradient(to right, #007BFF, #00C6FF);
+      padding: 20px;
+      text-align: center;
+      color: white;
+    }
+
+    .eventCard {
+      border: 1px solid #ccc;
+      margin: 10px;
+      padding: 15px;
+      background-color: #fff;
+    }
+
+    h3, p {
+      font-size: 16px;
+      color: #444;
+    }
+
+    .highlight {
+      background-color: yellow;
+    }
+
+    a:link {
+      color: blue;
+    }
+
+    a:hover {
+      color: green;
+    }
+
+    a:visited {
+      color: purple;
+    }
+
+    a:active {
+      color: red;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+      padding: 10px;
+    }
+
+    nav ul li {
+      padding: 5px;
+    }
+
+    table, th, td {
+      border: 1px solid #000;
+      padding: 10px;
+      background-color: #eee;
+      border-collapse: collapse;
+      text-align: center;
+    }
+
+    tr:nth-child(even) {
+      background-color: #ddd;
+    }
+
+    .eventCard {
+      padding: 20px;
+      margin: 10px;
+      border: 1px solid #999;
+      outline: 2px dashed #333;
+    }
+
+    #news {
+      column-count: 2;
+      column-gap: 30px;
+      column-rule: 1px solid gray;
+    }
+
+    @media screen and (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+      }
+      img {
+        width: 100%;
+      }
+      body {
+        font-size: 14px;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header id="mainHeader">
+    <h1>Welcome to the Local Community Event Portal</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="help.html" target="_blank">Help</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="home">
+      <div id="welcomeBanner" style="background-color: lightblue; padding: 10px;">
+        <h2>Hello, User!</h2>
+        <span style="color: red; font-weight: bold;">Special Offer!</span>
+      </div>
+    </section>
+
+    <section id="events">
+      <h2>Past Events Gallery</h2>
+      <table>
+        <caption>Community Events</caption>
+        <tr>
+          <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxpyGROWM_dMjCQNATojlThbkLxGv7_14ifA&s" alt="Event 1" title="Music Night" class="eventImage"></td>
+          <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxpyGROWM_dMjCQNATojlThbkLxGv7_14ifA&s" alt="Event 2" title="Food Festival" class="eventImage"></td>
+          <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxpyGROWM_dMjCQNATojlThbkLxGv7_14ifA&s" alt="Event 3" title="Charity Run" class="eventImage"></td>
+        </tr>
+        <tr>
+          <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxpyGROWM_dMjCQNATojlThbkLxGv7_14ifA&s" alt="Event 4" title="Art Show" class="eventImage"></td>
+          <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxpyGROWM_dMjCQNATojlThbkLxGv7_14ifA&s" alt="Event 5" title="Book Fair" class="eventImage"></td>
+          <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxpyGROWM_dMjCQNATojlThbkLxGv7_14ifA&s" alt="Event 6" title="Tech Talk" class="eventImage"></td>
+        </tr>
+      </table>
+    </section>
+
+    <section id="register">
+      <h2>Event Registration</h2>
+      <form onsubmit="showConfirmation(); return false;">
+        <input type="text" placeholder="Name" required autofocus><br>
+        <input type="email" placeholder="Email" required><br>
+        <input type="date" required><br>
+        <select id="eventType" onchange="savePreference(this)">
+          <option value="">Choose an Event</option>
+          <option value="music">Music Night</option>
+          <option value="food">Food Festival</option>
+        </select><br>
+        <textarea placeholder="Message"></textarea><br>
+        <input type="tel" id="phone" placeholder="Phone Number" onblur="validatePhone(this)"><br>
+        <button type="submit" onclick="showConfirmation()">Submit</button>
+        <output id="confirmation"></output>
+        <button type="button" onclick="clearPreferences()">Clear Preferences</button>
+      </form>
+    </section>
+
+    <section id="news">
+      <h2>Community News</h2>
+      <p>Lots of exciting things happening in our city this summer. Stay tuned!</p>
+    </section>
+
+    <section id="video">
+      <h2>Event Promo</h2>
+      <video width="320" height="240" controls oncanplay="videoReady()">
+        <source src="https://www.google.com/search?q=video+for+websites&sca_esv=4fa71b8dbfa83ed9&rlz=1C1VDKB_enIN1057IN1057&udm=7&biw=1280&bih=585&ei=UOE1aIeLN7SQseMPnpDpqAk&ved=0ahUKEwiH87KqgsSNAxU0SGwGHR5IGpUQ4dUDCBA&uact=5&oq=video+for+websites&gs_lp=EhZnd3Mtd2l6LW1vZGVsZXNzLXZpZGVvIhJ2aWRlbyBmb3Igd2Vic2l0ZXMyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeSMEUUH9YjRNwAXgBkAEAmAGGAqABwROqAQUwLjQuOLgBA8gBAPgBAZgCDaACjRTCAgoQABiwAxjWBBhHwgIOEAAYgAQYkQIYsQMYigXCAgsQABiABBiRAhiKBcICCBAAGIAEGLEDwgIOEAAYgAQYsQMYgwEYigWYAwCIBgGQBgiSBwUxLjQuOKAH40OyBwUwLjQuOLgHhhQ&sclient=gws-wiz-modeless-video#fpstate=ive&vld=cid:d05c4090,vid:NOMy0nFbKM4,st:" type="video/mp4">
+      </video>
+    </section>
+
+    <section>
+      <button onclick="findLocation()">Find Nearby Events</button>
+      <p id="locationOutput"></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Local City Council</p>
+  </footer>
+
+  <script>
+    function showConfirmation() {
+      document.getElementById("confirmation").value = "Registration Submitted!";
+    }
+
+    function validatePhone(input) {
+      if (!/^[0-9]{10}$/.test(input.value)) {
+        alert("Invalid phone number");
+      }
+    }
+
+    function videoReady() {
+      alert("Video ready to play");
+    }
+
+    window.onbeforeunload = function () {
+      return "Are you sure you want to leave?";
+    }
+
+    function savePreference(select) {
+      localStorage.setItem("eventType", select.value);
+    }
+
+    function clearPreferences() {
+      localStorage.clear();
+      sessionStorage.clear();
+    }
+
+    function findLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          function (position) {
+            document.getElementById("locationOutput").innerText =
+              `Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`;
+          },
+          function (error) {
+            alert("Geolocation error: " + error.message);
+          },
+          {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0
+          }
+        );
+      } else {
+        alert("Geolocation not supported");
+      }
+    }
+
+    window.onload = function () {
+      const savedType = localStorage.getItem("eventType");
+      if (savedType) {
+        document.getElementById("eventType").value = savedType;
+      }
+
+      document.querySelector("textarea").addEventListener("keydown", function (e) {
+        console.log("Characters: " + this.value.length);
+      });
+
+      document.querySelectorAll("img").forEach(img => {
+        img.ondblclick = function () {
+          img.style.transform = "scale(1.5)";
+        };
+      });
+    }
+  </script>
+</body>
+</html>
